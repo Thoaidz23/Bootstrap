@@ -29,7 +29,7 @@
 
                         echo '
                         <li>
-                            <a href="danhmucsanpham.php?id_dmsp=' . $id_dmsp . '">
+                            <a style="text-decoration: none" href="danhmucsanpham.php?id_dmsp=' . $id_dmsp . '">
                                 ' . $icon . ' ' . htmlspecialchars($ten_dmsp) . '
                             </a>
                         </li>';

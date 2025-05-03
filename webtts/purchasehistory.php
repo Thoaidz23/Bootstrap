@@ -416,6 +416,12 @@
                 else {
                     echo '<p style="display: inline; margin: 0; padding: 4px;background-color:  rgba(255, 113, 113, 0.601); color: rgb(207, 8, 5);">Đã hủy</p>';
                 }
+                if ($row['pay_status'] == 0) {
+                    echo '<p style="display: inline; margin: 0; padding: 4px;background-color: rgba(255, 113, 113, 0.601); color: rgb(207, 8, 5);  font-size: 15px; font-weight: 150; margin-left: 20px;">Chưa thanh toán</p>';
+                }
+                else {
+                    echo '<p style="display: inline; margin-left: 20px; padding: 4px;background-color:  rgba(166, 254, 194, 0.886); color: rgb(9, 182, 38); font-size: 15px; font-weight: 150">Đã thanh toán</p>';
+                }
                 ?>
 
                     <p><?php echo number_format($row["total_price"],0,",",".") ?><sup>đ</sup></p>

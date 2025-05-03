@@ -304,8 +304,8 @@
                             <p>Thanh toán khi nhận hàng </p>
                         </div>
                     </div>
-                    <div data-v-05e59da4="" class="list-payment__item" onclick="addBorder(this)"><div data-v-05e59da4="" class="payment-item__img"><img data-v-05e59da4="" src="https://cdn2.cellphones.com.vn/x/media/logo/gw2/momo_vi.png" alt="payment method"></div> <div data-v-05e59da4="" class="payment-item__title" style ='margin-left:5px'><p data-v-05e59da4="">Ví MoMo</p> <!----> <!----> <!----></div> <!----> <div data-v-05e59da4="" class="payment-item__tick"><svg data-v-05e59da4="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
-                    <div data-v-05e59da4="" class="list-payment__item" onclick="addBorder(this)"><div data-v-05e59da4="" class="payment-item__img"><img data-v-05e59da4="" src="https://cdn2.cellphones.com.vn/x400,webp,q100/media/wysiwyg/QRCode.png" alt="payment method"></div> <div data-v-05e59da4="" class="payment-item__title" style ='margin-left:5px'><p data-v-05e59da4="">Chuyển khoản ngân hàng qua mã QR</p> <!----> <!----> <!----></div> <!----> <div data-v-05e59da4="" class="payment-item__tick"><svg data-v-05e59da4="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+                    <div data-v-05e59da4="" id="qrmomo" class="list-payment__item" onclick="addBorder(this)"><div data-v-05e59da4="" class="payment-item__img"><img data-v-05e59da4="" src="https://cdn2.cellphones.com.vn/x/media/logo/gw2/momo_vi.png" alt="payment method"></div> <div data-v-05e59da4="" class="payment-item__title" style ='margin-left:5px'><p data-v-05e59da4="">Ví MoMo</p> <!----> <!----> <!----></div> <!----> <div data-v-05e59da4="" class="payment-item__tick"><svg data-v-05e59da4="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
+                    <div data-v-05e59da4="" id="qrbank" class="list-payment__item" onclick="addBorder(this)"><div data-v-05e59da4="" class="payment-item__img"><img data-v-05e59da4="" src="https://cdn2.cellphones.com.vn/x400,webp,q100/media/wysiwyg/QRCode.png" alt="payment method"></div> <div data-v-05e59da4="" class="payment-item__title" style ='margin-left:5px'><p data-v-05e59da4="">Chuyển khoản ngân hàng qua mã QR</p> <!----> <!----> <!----></div> <!----> <div data-v-05e59da4="" class="payment-item__tick"><svg data-v-05e59da4="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"></svg></div></div>
                     <div id="alert" style="display: none; color: red; text-align:center">Bạn chưa chọn phương thức thanh toán!</div>
                 </div>
             </div>
@@ -389,8 +389,28 @@ function addBorder(selectedDiv) {
   selectedDiv.classList.add('active');
 }
 
+// function confirmSelection(event) {
+//     // Kiểm tra xem có phương thức thanh toán được chọn chưa
+//     const selectedDiv = document.querySelector('.list-payment__item.active');
+
+//     if (!selectedDiv) {
+//         document.getElementById("alert").style.display = "block";
+//         event.preventDefault();
+//     } else {
+//         const successMessage = document.getElementById("success-message");
+//         successMessage.style.display = "block";
+
+//         const modal = document.getElementById('payment-modal');
+//         const body = document.body;
+//         modal.classList.add('hidden');
+//         body.classList.remove('no-scroll');
+
+//         setTimeout(() => {
+//             window.location.href = "thanhtoan.php";
+//         }, 2000);
+//     }
+// }
 function confirmSelection(event) {
-    // Kiểm tra xem có phương thức thanh toán được chọn chưa
     const selectedDiv = document.querySelector('.list-payment__item.active');
 
     if (!selectedDiv) {
@@ -402,14 +422,23 @@ function confirmSelection(event) {
 
         const modal = document.getElementById('payment-modal');
         const body = document.body;
-        modal.classList.add('hidden');
+        modal?.classList.add('hidden');  // Optional chaining in case modal doesn't exist
         body.classList.remove('no-scroll');
 
         setTimeout(() => {
-            window.location.href = "thanhtoan.php";
+            // Kiểm tra ID để chuyển trang tương ứng
+            const id = selectedDiv.id;
+            if (id === "qrbank") {
+                window.location.href = "thanhtoanbank.php";
+            } else if (id === "qrmomo") {
+                window.location.href = "thanhtoanmomo.php";
+            } else {
+                window.location.href = "thanhtoan.php";
+            }
         }, 2000);
     }
 }
+
 </script>
 
 </body>

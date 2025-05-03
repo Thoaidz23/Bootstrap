@@ -27,7 +27,7 @@
     }    
     $code_order = generateRandomString(12);
     $now = date('Y-m-d H:i:s');
-    $insert_order = "INSERT INTO tbl_order(id_user, code_order, status, date) VALUE('$id_user', '$code_order', '0', '$now')";
+    $insert_order = "INSERT INTO tbl_order(id_user, code_order, status, pay_status, date) VALUE('$id_user', '$code_order', '0', '0', '$now')";
     $order_query = mysqli_query($mysqli, $insert_order);
 
     if ($order_query) {
@@ -87,5 +87,5 @@
         mysqli_query($mysqli, $delete_cart);
     }
     
-    header("location: purchasehistory.php");
+    header("location: qrbank.php");
 ?>

@@ -110,8 +110,6 @@
     </div>
 </div>
 
-
-
 <div class="col-lg-12">
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white text-center">
@@ -120,12 +118,18 @@
         <div class="card-body">
             <form action="quanlydonhang/xuly.php?id_order=<?php echo $_GET['id_order'] ?>" method="POST">
                 <div class="form-group">
-                    <label for="orderStatus">Chọn trạng thái đơn hàng</label>
+                    <label for="payStatus">Trạng thái thanh toán</label>
                     <?php
-                        $sql_lietke = "SELECT * FROM tbl_order WHERE id_order = $_GET[id_order]";
-                        $query_lietke = mysqli_query($mysqli, $sql_lietke);
-                        while ($row = mysqli_fetch_array($query_lietke)) {
+                        $sql = "SELECT * FROM tbl_order WHERE id_order = " . $_GET['id_order'];
+                        $result = mysqli_query($mysqli, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
                     ?>
+                    <select class="form-control mb-3" id="payStatus" name="pay_status">
+                        <option value="0" <?php if($row["pay_status"] == 0) echo "selected"; ?>>Chưa thanh toán</option>
+                        <option value="1" <?php if($row["pay_status"] == 1) echo "selected"; ?>>Đã thanh toán</option>
+                    </select>
+
+                    <label for="orderStatus">Trạng thái đơn hàng</label>
                     <select class="form-control" id="orderStatus" name="status">
                         <option value="0" <?php if($row["status"] == 0) echo "selected"; ?>>Chờ xác nhận</option>
                         <option value="1" <?php if($row["status"] == 1) echo "selected"; ?>>Đã xác nhận</option>
@@ -134,14 +138,13 @@
                         <option value="5" <?php if($row["status"] == 5) echo "selected"; ?>>Đang chờ hủy</option>
                         <option value="4" <?php if($row["status"] == 4) echo "selected"; ?>>Đã hủy</option>
                     </select>
-                        <?php
-                        }
-                        ?>
+                    <?php } ?>
                 </div>
-                <div class="form-group text-center">
-                    <button type="submit" name="xulydonhang" class="btn btn-success">Xử lý</button>
+                <div class="form-group text-center mt-3">
+                    <button type="submit" name="capnhat_tonghop" class="btn btn-success">Xử lý</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+

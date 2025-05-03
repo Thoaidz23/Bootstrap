@@ -15,7 +15,7 @@
     <meta name="keywords" content="iPhone 15, iPhone 15 Plus, điện thoại, Apple, smartphone">
     <title><?php echo $sanpham["ten_sanpham"] ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -221,7 +221,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             line-height: 1.5;
             height: 4.5em;
